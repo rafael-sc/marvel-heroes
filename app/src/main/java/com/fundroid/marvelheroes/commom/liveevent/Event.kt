@@ -1,4 +1,4 @@
-package com.arctouch.codechallenge.commom.liveevent
+package com.fundroid.marvelheroes.commom.liveevent
 
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.

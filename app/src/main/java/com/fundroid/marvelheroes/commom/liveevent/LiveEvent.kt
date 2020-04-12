@@ -1,4 +1,4 @@
-package com.arctouch.codechallenge.commom.liveevent
+package com.fundroid.marvelheroes.commom.liveevent
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData

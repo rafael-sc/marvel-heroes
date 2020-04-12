@@ -15,7 +15,7 @@ class CharactersRepository(
             val result = marvelAPI.getMarvelCharactersAsync().await()
             val resultBody = result.body()
             if (result.isSuccessful && resultBody != null) {
-                CharacterResponseResult.Success(result.body())
+                CharacterResponseResult.Success(resultBody.data.results)
             } else {
                 CharacterResponseResult.Error("error")
             }

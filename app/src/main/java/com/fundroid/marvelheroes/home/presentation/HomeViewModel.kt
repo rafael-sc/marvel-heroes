@@ -1,7 +1,11 @@
 package com.fundroid.marvelheroes.home.presentation
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.BaseViewModel
+import com.fundroid.marvelheroes.commom.liveevent.LiveEvent
+import com.fundroid.marvelheroes.commom.liveevent.MutableLiveEvent
 import com.fundroid.marvelheroes.data.CharacterResponseResult
 import com.fundroid.marvelheroes.home.domain.CharacterUseCase
 import kotlinx.coroutines.launch
@@ -10,20 +14,20 @@ class HomeViewModel(
     private val characterUseCase: CharacterUseCase
 ) : BaseViewModel() {
 
+    private val _characters = MutableLiveData<List<MarvelCharacter>>()
+    val characters: LiveData<List<MarvelCharacter>>
+        get() = _characters
+
+    private val _noResultFound = MutableLiveEvent()
+    val noResultFound: LiveEvent
+        get() = _noResultFound
+
     fun getCharacters() {
         viewModelScope.launch {
             when (val result = characterUseCase.getCharacters()) {
-                is CharacterResponseResult.Success ->
-                    result.characterList?.let {
-                        it.data.results.forEach {
-                            Log.d("getchar", it.name + it.description)
-                        }
-                    }
-
-                is CharacterResponseResult.Error -> Log.d("getchar", "error")
+                is CharacterResponseResult.Success -> _characters.postValue(result.characterList)
+                is CharacterResponseResult.Error -> _noResultFound.emit()
             }
         }
     }
-
-
 }
