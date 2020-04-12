@@ -1,6 +1,7 @@
 package com.fundroid.marvelheroes.api
 
 import com.fundroid.marvelheroes.api.model.MarvelAPIResponse
+import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.Utils
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred

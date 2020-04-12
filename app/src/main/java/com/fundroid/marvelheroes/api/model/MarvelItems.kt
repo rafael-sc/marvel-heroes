@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MarvelImage(
-    val path: String,
-    val extension: String
+data class MarvelItems(
+    val resourceURI: String,
+    val name: String,
+    val type: String
 ) : Parcelable

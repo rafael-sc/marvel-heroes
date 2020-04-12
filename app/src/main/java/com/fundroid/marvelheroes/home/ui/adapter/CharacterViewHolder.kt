@@ -8,6 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.fundroid.marvelheroes.R
 import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.ImageUrlBuilder
+import com.fundroid.marvelheroes.commom.extension.loadUrl
 import kotlinx.android.synthetic.main.character_item.view.*
 
 
@@ -19,14 +20,7 @@ class CharacterViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         itemView.titleTextView.text = character.name
 
         val imageUrl = ImageUrlBuilder().buildCharacterUrl(character.thumbnail)
+        itemView.imageViewCharacter.loadUrl(imageUrl)
 
-        val requestOptions = RequestOptions()
-            .centerCrop()
-            .placeholder(R.drawable.ic_marvel_logo)
-
-        Glide.with(itemView)
-            .load(imageUrl)
-            .apply(requestOptions)
-            .into(itemView.ImageViewCharacter)
     }
 }
