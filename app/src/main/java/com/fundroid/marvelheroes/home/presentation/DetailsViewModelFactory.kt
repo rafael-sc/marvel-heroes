@@ -6,16 +6,17 @@ import com.fundroid.marvelheroes.api.MarvelAPI
 import com.fundroid.marvelheroes.home.CharactersRepository
 import com.fundroid.marvelheroes.home.domain.CharacterUseCase
 
-class HomeViewModelFactory : ViewModelProvider.Factory {
+class DetailsViewModelFactory : ViewModelProvider.Factory {
 
     private val api = MarvelAPI.getApi()
     private val charactersRepository = CharactersRepository(api)
 
-    private val moviesUseCase = CharacterUseCase(
+    private val characterUseCase = CharacterUseCase(
         charactersRepository
     )
+
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HomeViewModel(moviesUseCase) as T
+        return DetailsViewModel(characterUseCase) as T
     }
 }

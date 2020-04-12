@@ -4,10 +4,8 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 object Utils {
-
     fun md5(stringToHash: String): String {
         val md5 = "MD5"
-
         try {
             val digest = MessageDigest.getInstance(md5)
             digest.update(stringToHash.toByteArray())
@@ -26,8 +24,6 @@ object Utils {
         } catch (e: NoSuchAlgorithmException) {
             e.printStackTrace()
         }
-
         return ""
     }
-
 }

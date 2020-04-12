@@ -6,27 +6,27 @@ import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.BaseViewModel
 import com.fundroid.marvelheroes.commom.liveevent.LiveEvent
 import com.fundroid.marvelheroes.commom.liveevent.MutableLiveEvent
-import com.fundroid.marvelheroes.data.CharacterListResponseResult
+import com.fundroid.marvelheroes.data.CharacterDetailResponseResult
 import com.fundroid.marvelheroes.home.domain.CharacterUseCase
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+class DetailsViewModel(
     private val characterUseCase: CharacterUseCase
 ) : BaseViewModel() {
 
-    private val _characters = MutableLiveData<List<MarvelCharacter>>()
-    val characters: LiveData<List<MarvelCharacter>>
-        get() = _characters
+    private val _character = MutableLiveData<MarvelCharacter>()
+    val character: LiveData<MarvelCharacter>
+        get() = _character
 
     private val _noResultFound = MutableLiveEvent()
     val noResultFound: LiveEvent
         get() = _noResultFound
 
-    fun getCharacters() {
+    fun getCharacters(characterId: Int) {
         viewModelScope.launch {
-            when (val result = characterUseCase.getCharactersList()) {
-                is CharacterListResponseResult.Success -> _characters.postValue(result.characterList)
-                is CharacterListResponseResult.Error -> _noResultFound.emit()
+            when (val result = characterUseCase.getCharacterDetail(characterId)) {
+                is CharacterDetailResponseResult.Success -> _character.postValue(result.character)
+                is CharacterDetailResponseResult.Error -> _noResultFound.emit()
             }
         }
     }

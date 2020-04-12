@@ -2,7 +2,12 @@ package com.fundroid.marvelheroes.data
 
 import com.fundroid.marvelheroes.api.model.MarvelCharacter
 
-sealed class CharacterResponseResult {
-    data class Success(val characterList: List<MarvelCharacter>) : CharacterResponseResult()
-    data class Error(val message: String) : CharacterResponseResult()
+sealed class CharacterListResponseResult {
+    data class Success(val characterList: List<MarvelCharacter>) : CharacterListResponseResult()
+    data class Error(val message: String) : CharacterListResponseResult()
+}
+
+sealed class CharacterDetailResponseResult {
+    data class Success(val character: MarvelCharacter) : CharacterDetailResponseResult()
+    data class Error(val message: String) : CharacterDetailResponseResult()
 }

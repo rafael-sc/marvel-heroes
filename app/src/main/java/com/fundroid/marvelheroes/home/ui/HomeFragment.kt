@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fundroid.marvelheroes.R
@@ -24,6 +24,7 @@ class HomeFragment : Fragment() {
 
     private var homeAdapter: HomeAdapter? = null
     lateinit var linearLayoutManager: LinearLayoutManager
+    private var targetFragment = this
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,12 +59,16 @@ class HomeFragment : Fragment() {
     private fun createAdapter(results: MutableList<MarvelCharacter>) {
         homeAdapter = HomeAdapter(results, object : HomeAdapter.ItemClickListener {
             override fun onItemClick(character: MarvelCharacter) {
-//                activity?.startActivity<DetailActivity>(DetailActivity.MOVIE_ITEM to movie)
-                Toast.makeText(requireContext(), character.name, Toast.LENGTH_SHORT).show()
+                fragmentManager?.run {
+                    beginTransaction()
+                        .add(R.id.container, CharacterDetailFragment.newInstance(character))
+                        .addToBackStack("this")
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit()
+                }
             }
         })
         recyclerViewCharacters.adapter = homeAdapter
-
         progressBar.visibility = View.GONE
     }
 }
