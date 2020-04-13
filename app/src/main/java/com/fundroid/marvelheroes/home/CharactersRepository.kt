@@ -21,11 +21,11 @@ class CharactersRepository(
             if (result.isSuccessful && resultBody != null) {
                 CharacterListResponseResult.Success(resultBody.data.results)
             } else {
-                CharacterListResponseResult.Error("error")
+                CharacterListResponseResult.Error("error: " + result.errorBody())
             }
 
         } catch (ex: Exception) {
-            CharacterListResponseResult.Error("error")
+            CharacterListResponseResult.Error("error: " + ex.message)
         }
     }
 
