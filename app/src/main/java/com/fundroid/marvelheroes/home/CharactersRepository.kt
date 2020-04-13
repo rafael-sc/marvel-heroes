@@ -40,7 +40,7 @@ class CharactersRepository(
             }
 
         } catch (ex: Exception) {
-            CharacterDetailResponseResult.Error("error")
+            CharacterDetailResponseResult.Error("errorz")
         }
     }
 }
