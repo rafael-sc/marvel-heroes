@@ -36,11 +36,11 @@ class CharactersRepository(
             if (result.isSuccessful && resultBody != null) {
                 CharacterDetailResponseResult.Success(resultBody.data.results[0])
             } else {
-                CharacterDetailResponseResult.Error("error")
+                CharacterDetailResponseResult.Error("error: " + result.errorBody())
             }
 
         } catch (ex: Exception) {
-            CharacterDetailResponseResult.Error("errorz")
+            CharacterDetailResponseResult.Error("error: " + ex.message)
         }
     }
 }
