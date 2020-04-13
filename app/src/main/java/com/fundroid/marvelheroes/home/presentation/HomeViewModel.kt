@@ -14,6 +14,8 @@ class HomeViewModel(
     private val characterUseCase: CharacterUseCase
 ) : BaseViewModel() {
 
+    private var currentPage = 0
+
     private val _characters = MutableLiveData<List<MarvelCharacter>>()
     val characters: LiveData<List<MarvelCharacter>>
         get() = _characters
@@ -23,8 +25,10 @@ class HomeViewModel(
         get() = _noResultFound
 
     fun getCharacters() {
+
+        currentPage++
         viewModelScope.launch {
-            when (val result = characterUseCase.getCharactersList()) {
+            when (val result = characterUseCase.getCharactersList(currentPage)) {
                 is CharacterListResponseResult.Success -> _characters.postValue(result.characterList)
                 is CharacterListResponseResult.Error -> _noResultFound.emit()
             }

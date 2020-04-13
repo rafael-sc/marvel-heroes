@@ -12,10 +12,10 @@ class CharacterUseCase(
     lateinit var characters: CharacterListResponseResult
     lateinit var character: CharacterDetailResponseResult
 
-    suspend fun getCharactersList(): CharacterListResponseResult {
+    suspend fun getCharactersList(currentPage: Int): CharacterListResponseResult {
         coroutineScope {
             launch {
-                characters = charactersRepository.getCharacters()
+                characters = charactersRepository.getCharacters(currentPage)
             }
         }
         return characters
@@ -25,7 +25,7 @@ class CharacterUseCase(
 
         coroutineScope {
             launch {
-                character = charactersRepository.getCharacterdetail(characterId)
+                character = charactersRepository.getCharacterDetail(characterId)
             }
         }
         return character

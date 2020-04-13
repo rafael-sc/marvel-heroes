@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fundroid.marvelheroes.R
 import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.extension.observe
 import com.fundroid.marvelheroes.home.presentation.HomeViewModel
 import com.fundroid.marvelheroes.home.presentation.HomeViewModelFactory
 import com.fundroid.marvelheroes.home.ui.adapter.HomeAdapter
+import com.rockerhieu.rvadapter.endless.EndlessRecyclerViewAdapter
 import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment() {
@@ -23,8 +23,8 @@ class HomeFragment : Fragment() {
     }
 
     private var homeAdapter: HomeAdapter? = null
-    lateinit var linearLayoutManager: LinearLayoutManager
-    private var targetFragment = this
+    private var endlessRecyclerViewAdapter: EndlessRecyclerViewAdapter? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,21 +39,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.getCharacters()
         observe(viewModel.characters) {
-            updateCharactersList(it)
+            loadCharactersAdapter(it)
         }
+        viewModel.getCharacters()
     }
 
-    private fun updateCharactersList(results: List<MarvelCharacter>) {
+    private fun loadCharactersAdapter(results: List<MarvelCharacter>) {
         if (homeAdapter == null)
             createAdapter(results.toMutableList())
         else
-            updateAdapter(results.toMutableList())
+            updateAdapter(results)
     }
 
     private fun updateAdapter(results: List<MarvelCharacter>) {
         homeAdapter?.insertItems(results)
+        endlessRecyclerViewAdapter?.onDataReady(true)
     }
 
     private fun createAdapter(results: MutableList<MarvelCharacter>) {
@@ -68,7 +69,12 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        recyclerViewCharacters.adapter = homeAdapter
+
+        endlessRecyclerViewAdapter = EndlessRecyclerViewAdapter(homeAdapter) {
+            viewModel.getCharacters()
+        }
+
+        recyclerViewCharacters.adapter = endlessRecyclerViewAdapter
         progressBar.visibility = View.GONE
     }
 }

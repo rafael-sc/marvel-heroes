@@ -19,14 +19,14 @@ interface MarvelAPI {
 
     @GET("characters")
     fun getMarvelCharactersAsync(
-        @Query("limit") limit: Int = 20,
+        @Query("limit") limit: Int = 10,
         @Query("offset") offset: Int = 0
     ): Deferred<Response<MarvelAPIResponse>>
 
     @GET("characters/{character_id}")
     fun getMarvelCharacterDetailAsync(
         @Path("character_id") characterId: Int,
-        @Query("limit") limit: Int = 20,
+        @Query("limit") limit: Int = 1,
         @Query("offset") offset: Int = 0
     ): Deferred<Response<MarvelAPIResponse>>
 

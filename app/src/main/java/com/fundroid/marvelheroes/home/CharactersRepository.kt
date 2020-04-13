@@ -9,9 +9,14 @@ class CharactersRepository(
     private val marvelAPI: MarvelAPI
 ) {
 
-    suspend fun getCharacters(): CharacterListResponseResult {
+    suspend fun getCharacters(currentPage: Int): CharacterListResponseResult {
         return try {
-            val result = marvelAPI.getMarvelCharactersAsync().await()
+
+            var offset = 0
+            if (currentPage > 1)
+                offset = 10
+
+            val result = marvelAPI.getMarvelCharactersAsync(offset = currentPage * offset).await()
             val resultBody = result.body()
             if (result.isSuccessful && resultBody != null) {
                 CharacterListResponseResult.Success(resultBody.data.results)
@@ -24,7 +29,7 @@ class CharactersRepository(
         }
     }
 
-    suspend fun getCharacterdetail(characterId: Int): CharacterDetailResponseResult {
+    suspend fun getCharacterDetail(characterId: Int): CharacterDetailResponseResult {
         return try {
             val result = marvelAPI.getMarvelCharacterDetailAsync(characterId).await()
             val resultBody = result.body()

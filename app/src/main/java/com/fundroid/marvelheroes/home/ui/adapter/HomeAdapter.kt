@@ -29,7 +29,7 @@ class HomeAdapter(
 
     fun insertItems(characters: List<MarvelCharacter>) {
         val startPosition = itemCount - 1
-        characterList.addAll(characters.distinct())
+        characterList.addAll(characters)
         notifyItemRangeInserted(startPosition, characters.size)
     }
 }
