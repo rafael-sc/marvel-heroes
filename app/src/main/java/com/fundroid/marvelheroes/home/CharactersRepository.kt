@@ -14,9 +14,9 @@ class CharactersRepository(
 
             var offset = 0
             if (currentPage > 1)
-                offset = 10
+                offset = 10 * currentPage
 
-            val result = marvelAPI.getMarvelCharactersAsync(offset = currentPage * offset).await()
+            val result = marvelAPI.getMarvelCharactersAsync(offset = offset).await()
             val resultBody = result.body()
             if (result.isSuccessful && resultBody != null) {
                 CharacterListResponseResult.Success(resultBody.data.results)
