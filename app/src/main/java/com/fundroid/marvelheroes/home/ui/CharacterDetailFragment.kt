@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.fundroid.marvelheroes.R
@@ -25,7 +26,8 @@ class CharacterDetailFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.character_details_fragment, container, false)
@@ -44,7 +46,6 @@ class CharacterDetailFragment : Fragment() {
                 else
                     textViewDescription.text = getString(R.string.description_not_available)
 
-
                 textViewName.text = it.name
                 imageViewCharacter.loadUrl(ImageUrlBuilder().buildCharacterUrl(it.thumbnail))
             }
@@ -52,6 +53,9 @@ class CharacterDetailFragment : Fragment() {
 
         consume(viewModel.noComicFound) {
             updateComicsSectionVisibility(View.GONE)
+        }
+        consume(viewModel.noResultFound) {
+            Toast.makeText(requireContext(), "Cannot reach this character info", Toast.LENGTH_LONG).show()
         }
 
         observe(viewModel.comics) {
@@ -80,6 +84,7 @@ class CharacterDetailFragment : Fragment() {
         }
         if (comics.size >= 3) {
             imageViewComic3.loadUrl(ImageUrlBuilder().buildCharacterUrl(comics[2].thumbnail))
+            textViewComic3.text = (comics[2].title)
             linearLayoutComic3.visibility = View.VISIBLE
         }
     }
@@ -93,6 +98,5 @@ class CharacterDetailFragment : Fragment() {
                     putParcelable(ARG_MARVEL_CHARACTER, marvelCharacter)
                 }
             }
-
     }
 }

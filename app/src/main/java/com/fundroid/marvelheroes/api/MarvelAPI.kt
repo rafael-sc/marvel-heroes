@@ -16,7 +16,6 @@ import java.util.*
 
 interface MarvelAPI {
 
-
     @GET("characters")
     fun getMarvelCharactersAsync(
         @Query("limit") limit: Int = 10,
@@ -30,7 +29,7 @@ interface MarvelAPI {
         @Query("offset") offset: Int = 0
     ): Deferred<Response<MarvelAPIResponse>>
 
-    @GET("characters/{character_id}/comics") //orderBy=-issueNumber
+    @GET("characters/{character_id}/comics") // orderBy=-issueNumber
     fun getMarvelCharacterComicsAsync(
         @Path("character_id") characterId: Int,
         @Query("limit") limit: Int = 3,
@@ -65,15 +64,10 @@ interface MarvelAPI {
                 .create(MarvelAPI::class.java)
         }
 
-
         private val URL = "https://gateway.marvel.com//v1/public/"
         private const val PUBLIC_API_KEY: String = "6357e1722cfbb51fc0b8b3a2b957a75a"
         private val PRIVATE_API_KEY: String = "588c70ac52c961a42f73e171f2e653434c3c49e9"
         val timestamp = Date().time
         val hash = Utils.md5(timestamp.toString() + PRIVATE_API_KEY + PUBLIC_API_KEY)
-
-
     }
-
-
 }

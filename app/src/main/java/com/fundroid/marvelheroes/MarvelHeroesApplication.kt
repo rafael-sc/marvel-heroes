@@ -17,5 +17,4 @@ class MarvelHeroesApplication : Application() {
             modules(listOf(homeViewModelModule))
         }
     }
-
 }

@@ -32,12 +32,10 @@ class DetailsViewModel(
     val noComicFound: LiveEvent
         get() = _noComicFound
 
-
     fun getCharacterInfo(characterId: Int) {
         getCharacters(characterId)
         getComics(characterId)
     }
-
 
     private fun getCharacters(characterId: Int) {
         viewModelScope.launch {
@@ -61,5 +59,4 @@ class DetailsViewModel(
             }
         }
     }
-
 }

@@ -23,7 +23,6 @@ class CharactersRepository(
             } else {
                 CharacterListResponseResult.Error("error: " + result.errorBody())
             }
-
         } catch (ex: Exception) {
             CharacterListResponseResult.Error("error: " + ex.message)
         }
@@ -38,7 +37,6 @@ class CharactersRepository(
             } else {
                 CharacterDetailResponseResult.Error("error: " + result.errorBody())
             }
-
         } catch (ex: Exception) {
             CharacterDetailResponseResult.Error("error: " + ex.message)
         }
@@ -53,7 +51,6 @@ class CharactersRepository(
             } else {
                 ComicsResponseResult.Error("error: " + result.errorBody())
             }
-
         } catch (ex: Exception) {
             ComicsResponseResult.Error("error: " + ex.message)
         }

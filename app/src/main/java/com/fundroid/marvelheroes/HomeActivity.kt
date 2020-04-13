@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.fundroid.marvelheroes.home.ui.HomeFragment
 
-
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,5 +23,4 @@ class HomeActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
 }

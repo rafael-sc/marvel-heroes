@@ -4,7 +4,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 
-
 abstract class LiveEvent {
     protected abstract val liveData: LiveData<Event<Unit>>
 

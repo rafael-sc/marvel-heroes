@@ -1,8 +1,6 @@
 package com.fundroid.marvelheroes.commom.liveevent
 
-
 import androidx.lifecycle.LifecycleOwner
-
 
 fun <T> LifecycleOwner.consume(liveEventData: LiveEventData<T>, onEvent: (T) -> Unit) {
     liveEventData.consume(this) {

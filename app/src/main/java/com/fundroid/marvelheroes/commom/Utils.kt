@@ -20,7 +20,6 @@ object Utils {
                 hexString.append(h)
             }
             return hexString.toString()
-
         } catch (e: NoSuchAlgorithmException) {
             e.printStackTrace()
         }

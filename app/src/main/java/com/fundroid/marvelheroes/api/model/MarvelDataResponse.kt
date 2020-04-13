@@ -8,7 +8,6 @@ data class MarvelDataResponse(
     val results: List<MarvelCharacter>
 ) : Parcelable
 
-
 @Parcelize
 data class MarvelComicDataResponse(
     val results: List<MarvelComics>

@@ -10,5 +10,4 @@ class ImageUrlBuilder {
             .toLowerCase(Locale.getDefault())
             .replace("http:", "https:")
     }
-
 }

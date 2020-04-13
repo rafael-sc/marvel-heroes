@@ -27,9 +27,9 @@ class HomeFragment : Fragment() {
     private var homeAdapter: HomeAdapter? = null
     private var endlessRecyclerViewAdapter: EndlessRecyclerViewAdapter? = null
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.home_fragment, container, false)
@@ -48,7 +48,6 @@ class HomeFragment : Fragment() {
         consume(viewModel.noResultFound) {
             Toast.makeText(requireContext(), "No results found, check your internet connection", Toast.LENGTH_LONG).show()
         }
-
 
         viewModel.getCharacters()
     }
