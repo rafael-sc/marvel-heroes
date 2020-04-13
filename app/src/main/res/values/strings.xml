@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Marvel Heroes</string>
+    <string name="description_not_available">Description not available</string>
+    <string name="latest_comics">Latest Comics</string>
 </resources>

@@ -8,5 +8,7 @@ data class MarvelComics(
     val available: Int,
     val collectionURI: String,
     val items: List<MarvelItems>,
-    val returned: Int
+    val returned: Int,
+    val title: String,
+    val thumbnail: MarvelThumbnail
 ) : Parcelable

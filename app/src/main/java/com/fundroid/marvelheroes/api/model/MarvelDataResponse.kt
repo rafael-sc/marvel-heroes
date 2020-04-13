@@ -7,3 +7,9 @@ import kotlinx.android.parcel.Parcelize
 data class MarvelDataResponse(
     val results: List<MarvelCharacter>
 ) : Parcelable
+
+
+@Parcelize
+data class MarvelComicDataResponse(
+    val results: List<MarvelComics>
+) : Parcelable

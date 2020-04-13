@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,66 +8,145 @@
     android:focusable="true"
     android:orientation="vertical">
 
-    <androidx.core.widget.NestedScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp">
+        android:orientation="vertical">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imageViewCharacter"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Hero Name" />
+
+            <TextView
+                android:id="@+id/textViewDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                tools:text="Hero description" />
 
-                <LinearLayout
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewComicsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/latest_comics"
+            android:visibility="gone" />
+
+        <GridLayout
+            android:id="@+id/gridLayoutComics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:orientation="horizontal"
+            android:rowCount="1">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutComic1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageViewComic1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
+                    android:background="@drawable/ic_marvel_logo" />
+
+                <TextView
+                    android:id="@+id/textViewComic1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imageViewCharacter"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/textViewName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="4dp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:shadowColor="#000000"
-                        android:shadowDx="1.8"
-                        android:shadowDy="1.5"
-                        android:shadowRadius="1.9"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="Hero Name" />
-
-                    <TextView
-                        android:id="@+id/textViewDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="8dp"
-                        android:ellipsize="end"
-                        android:textSize="16sp"
-                        tools:text="Hero description" />
-
-                </LinearLayout>
-
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
-        </ScrollView>
+            <LinearLayout
+                android:id="@+id/linearLayoutComic2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-    </androidx.core.widget.NestedScrollView>
+                <ImageView
+                    android:id="@+id/imageViewComic2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
+                    android:background="@drawable/ic_marvel_logo" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+                <TextView
+                    android:id="@+id/textViewComic2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutComic3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageViewComic3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
+                    android:background="@drawable/ic_marvel_logo" />
+
+                <TextView
+                    android:id="@+id/textViewComic3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:color="@color/black"
+                    android:gravity="center" />
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
+
+</ScrollView>

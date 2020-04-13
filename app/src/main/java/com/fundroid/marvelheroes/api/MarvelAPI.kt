@@ -1,7 +1,7 @@
 package com.fundroid.marvelheroes.api
 
+import com.fundroid.marvelheroes.api.model.MarvelAPIComicsResponse
 import com.fundroid.marvelheroes.api.model.MarvelAPIResponse
-import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.Utils
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -30,6 +30,13 @@ interface MarvelAPI {
         @Query("offset") offset: Int = 0
     ): Deferred<Response<MarvelAPIResponse>>
 
+    @GET("characters/{character_id}/comics") //orderBy=-issueNumber
+    fun getMarvelCharacterComicsAsync(
+        @Path("character_id") characterId: Int,
+        @Query("limit") limit: Int = 3,
+        @Query("orderBy") orderBy: String = "-issueNumber",
+        @Query("offset") offset: Int = 0
+    ): Deferred<Response<MarvelAPIComicsResponse>>
 
     companion object {
         fun getApi(): MarvelAPI {

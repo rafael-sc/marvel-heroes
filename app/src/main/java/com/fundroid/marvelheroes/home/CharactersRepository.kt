@@ -3,7 +3,7 @@ package com.fundroid.marvelheroes.home
 import com.fundroid.marvelheroes.api.MarvelAPI
 import com.fundroid.marvelheroes.data.CharacterDetailResponseResult
 import com.fundroid.marvelheroes.data.CharacterListResponseResult
-import java.lang.Exception
+import com.fundroid.marvelheroes.data.ComicsResponseResult
 
 class CharactersRepository(
     private val marvelAPI: MarvelAPI
@@ -41,6 +41,21 @@ class CharactersRepository(
 
         } catch (ex: Exception) {
             CharacterDetailResponseResult.Error("error: " + ex.message)
+        }
+    }
+
+    suspend fun getCharacterComics(characterId: Int): ComicsResponseResult {
+        return try {
+            val result = marvelAPI.getMarvelCharacterComicsAsync(characterId).await()
+            val resultBody = result.body()
+            if (result.isSuccessful && resultBody != null) {
+                ComicsResponseResult.Success(resultBody.data.results)
+            } else {
+                ComicsResponseResult.Error("error: " + result.errorBody())
+            }
+
+        } catch (ex: Exception) {
+            ComicsResponseResult.Error("error: " + ex.message)
         }
     }
 }

@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import com.fundroid.marvelheroes.R
 import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.extension.observe
+import com.fundroid.marvelheroes.commom.liveevent.consume
 import com.fundroid.marvelheroes.home.presentation.HomeViewModel
 import com.fundroid.marvelheroes.home.presentation.HomeViewModelFactory
 import com.fundroid.marvelheroes.home.ui.adapter.HomeAdapter
@@ -42,6 +44,12 @@ class HomeFragment : Fragment() {
         observe(viewModel.characters) {
             loadCharactersAdapter(it)
         }
+
+        consume(viewModel.noResultFound) {
+            Toast.makeText(requireContext(), "No results found, check your internet connection", Toast.LENGTH_LONG).show()
+        }
+
+
         viewModel.getCharacters()
     }
 
