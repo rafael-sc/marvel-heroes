@@ -4,6 +4,7 @@ import com.fundroid.marvelheroes.api.model.MarvelAPIComicsResponse
 import com.fundroid.marvelheroes.api.model.MarvelAPIResponse
 import com.fundroid.marvelheroes.commom.Utils
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import java.util.Date
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -12,7 +13,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.*
 
 interface MarvelAPI {
 

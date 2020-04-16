@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import com.fundroid.marvelheroes.R
 import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.api.model.MarvelComics
@@ -15,15 +14,12 @@ import com.fundroid.marvelheroes.commom.extension.loadUrl
 import com.fundroid.marvelheroes.commom.extension.observe
 import com.fundroid.marvelheroes.commom.liveevent.consume
 import com.fundroid.marvelheroes.home.presentation.DetailsViewModel
-import com.fundroid.marvelheroes.home.presentation.DetailsViewModelFactory
 import kotlinx.android.synthetic.main.character_details_fragment.*
+import org.koin.android.ext.android.inject
 
 class CharacterDetailFragment : Fragment() {
 
-    private val viewModel: DetailsViewModel by lazy {
-        ViewModelProviders.of(requireActivity(), DetailsViewModelFactory())
-            .get(DetailsViewModel::class.java)
-    }
+    private val viewModel: DetailsViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,

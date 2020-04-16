@@ -1,7 +1,7 @@
 package com.fundroid.marvelheroes.commom
 
 import com.fundroid.marvelheroes.api.model.MarvelThumbnail
-import java.util.*
+import java.util.Locale
 
 class ImageUrlBuilder {
 

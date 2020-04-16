@@ -7,22 +7,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProviders
 import com.fundroid.marvelheroes.R
 import com.fundroid.marvelheroes.api.model.MarvelCharacter
 import com.fundroid.marvelheroes.commom.extension.observe
 import com.fundroid.marvelheroes.commom.liveevent.consume
 import com.fundroid.marvelheroes.home.presentation.HomeViewModel
-import com.fundroid.marvelheroes.home.presentation.HomeViewModelFactory
 import com.fundroid.marvelheroes.home.ui.adapter.HomeAdapter
 import com.rockerhieu.rvadapter.endless.EndlessRecyclerViewAdapter
 import kotlinx.android.synthetic.main.home_fragment.*
+import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by lazy {
-        ViewModelProviders.of(requireActivity(), HomeViewModelFactory())
-            .get(HomeViewModel::class.java)
-    }
+
+    private val viewModel: HomeViewModel by inject()
 
     private var homeAdapter: HomeAdapter? = null
     private var endlessRecyclerViewAdapter: EndlessRecyclerViewAdapter? = null

@@ -11,6 +11,7 @@ class CharacterUseCase(
     suspend fun getCharactersList(currentPage: Int): CharacterListResponseResult {
         return charactersRepository.getCharacters(currentPage)
     }
+
     suspend fun getCharacterDetail(characterId: Int): CharacterDetailResponseResult {
         return charactersRepository.getCharacterDetail(characterId)
     }
